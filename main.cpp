@@ -1,3 +1,5 @@
+#include "dialogs.h"
+
 #include <QApplication>
 #include <QMainWindow>
 #include <QOpenGLWidget>
@@ -26,54 +28,6 @@
 #include <QQuaternion>
 #include <QWheelEvent>
 #include <QIcon>
-
-#include "linerotationdialog.h"
-
-
-
-//----------------------
-// Dialog for view position
-//----------------------
-class ViewPositionDialog : public QDialog {
-    Q_OBJECT
-public:
-    ViewPositionDialog(QWidget *parent = nullptr) : QDialog(parent) {
-        setWindowTitle("View Position");
-        QVBoxLayout *layout = new QVBoxLayout(this);
-
-        QHBoxLayout *eyeLayout = new QHBoxLayout();
-        eyeLayout->addWidget(new QLabel("Eye x:"));
-        ex = new QDoubleSpinBox(); ex->setRange(-100, 100); eyeLayout->addWidget(ex);
-        eyeLayout->addWidget(new QLabel("Eye y:"));
-        ey = new QDoubleSpinBox(); ey->setRange(-100, 100); eyeLayout->addWidget(ey);
-        eyeLayout->addWidget(new QLabel("Eye z:"));
-        ez = new QDoubleSpinBox(); ez->setRange(-100, 100); eyeLayout->addWidget(ez);
-        layout->addLayout(eyeLayout);
-
-        QHBoxLayout *pointLayout = new QHBoxLayout();
-        pointLayout->addWidget(new QLabel("Point x:"));
-        px = new QDoubleSpinBox(); px->setRange(-100, 100); pointLayout->addWidget(px);
-        pointLayout->addWidget(new QLabel("Point y:"));
-        py = new QDoubleSpinBox(); py->setRange(-100, 100); pointLayout->addWidget(py);
-        pointLayout->addWidget(new QLabel("Point z:"));
-        pz = new QDoubleSpinBox(); pz->setRange(-100, 100); pointLayout->addWidget(pz);
-        layout->addLayout(pointLayout);
-
-        QHBoxLayout *btnLayout = new QHBoxLayout();
-        QPushButton *okBtn = new QPushButton("OK");
-        QPushButton *cancelBtn = new QPushButton("Cancel");
-        btnLayout->addWidget(okBtn);
-        btnLayout->addWidget(cancelBtn);
-        layout->addLayout(btnLayout);
-
-        connect(okBtn, &QPushButton::clicked, this, &ViewPositionDialog::accept);
-        connect(cancelBtn, &QPushButton::clicked, this, &ViewPositionDialog::reject);
-    }
-    QVector3D getEye() const { return QVector3D(ex->value(), ey->value(), ez->value()); }
-    QVector3D getPoint() const { return QVector3D(px->value(), py->value(), pz->value()); }
-private:
-    QDoubleSpinBox *ex, *ey, *ez, *px, *py, *pz;
-};
 
 //----------------------
 // CubeWidget with zoom, texture animation, mouse control, lighting, gloss effect (toggle) and background color
@@ -199,7 +153,7 @@ protected:
                 if(uGlossOn) {
                     float sum = baseColor.r + baseColor.g + baseColor.b;
                     float glossFactor = smoothstep(1.1216, 1.8588, sum);
-                    specular = vec3(1.0) * spec * glossFactor * 1.5; // Coefficient augmenté de 0.5 à 1.5
+                    specular = vec3(1.0) * spec * glossFactor * 0.5;
                 }
                 vec3 result = ambient + diffuse + specular;
                 fragColor = vec4(result, 1.0);

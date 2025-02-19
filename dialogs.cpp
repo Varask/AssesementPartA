@@ -1,10 +1,8 @@
-#include "linerotationdialog.h"
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QDoubleSpinBox>
-#include <QPushButton>
+#include "dialogs.h"
 
+//----------------------
+// Implementation of LineRotationDialog
+//----------------------
 LineRotationDialog::LineRotationDialog(QWidget *parent,
                                        const QVector3D &defaultB,
                                        const QVector3D &defaultD,
@@ -14,7 +12,6 @@ LineRotationDialog::LineRotationDialog(QWidget *parent,
     setWindowTitle("Line Rotation");
     QVBoxLayout *layout = new QVBoxLayout(this);
 
-    // Section pour b (point sur la ligne)
     QHBoxLayout *bLayout = new QHBoxLayout();
     bLayout->addWidget(new QLabel("b.x:"));
     bx = new QDoubleSpinBox();
@@ -33,7 +30,6 @@ LineRotationDialog::LineRotationDialog(QWidget *parent,
     bLayout->addWidget(bz);
     layout->addLayout(bLayout);
 
-    // Section pour d (vecteur direction)
     QHBoxLayout *dLayout = new QHBoxLayout();
     dLayout->addWidget(new QLabel("d.x:"));
     dx = new QDoubleSpinBox();
@@ -52,7 +48,6 @@ LineRotationDialog::LineRotationDialog(QWidget *parent,
     dLayout->addWidget(dz);
     layout->addLayout(dLayout);
 
-    // Section pour l'angle
     QHBoxLayout *angleLayout = new QHBoxLayout();
     angleLayout->addWidget(new QLabel("Angle (deg):"));
     angleSpin = new QDoubleSpinBox();
@@ -61,7 +56,6 @@ LineRotationDialog::LineRotationDialog(QWidget *parent,
     angleLayout->addWidget(angleSpin);
     layout->addLayout(angleLayout);
 
-    // Boutons
     QHBoxLayout *btnLayout = new QHBoxLayout();
     QPushButton *okBtn = new QPushButton("OK");
     QPushButton *cancelBtn = new QPushButton("Cancel");
@@ -83,4 +77,62 @@ QVector3D LineRotationDialog::getD() const {
 
 float LineRotationDialog::getAngle() const {
     return angleSpin->value();
+}
+
+//----------------------
+// Implementation of ViewPositionDialog
+//----------------------
+ViewPositionDialog::ViewPositionDialog(QWidget *parent)
+    : QDialog(parent)
+{
+    setWindowTitle("View Position");
+    QVBoxLayout *layout = new QVBoxLayout(this);
+
+    QHBoxLayout *eyeLayout = new QHBoxLayout();
+    eyeLayout->addWidget(new QLabel("Eye x:"));
+    ex = new QDoubleSpinBox();
+    ex->setRange(-100, 100);
+    eyeLayout->addWidget(ex);
+    eyeLayout->addWidget(new QLabel("Eye y:"));
+    ey = new QDoubleSpinBox();
+    ey->setRange(-100, 100);
+    eyeLayout->addWidget(ey);
+    eyeLayout->addWidget(new QLabel("Eye z:"));
+    ez = new QDoubleSpinBox();
+    ez->setRange(-100, 100);
+    eyeLayout->addWidget(ez);
+    layout->addLayout(eyeLayout);
+
+    QHBoxLayout *pointLayout = new QHBoxLayout();
+    pointLayout->addWidget(new QLabel("Point x:"));
+    px = new QDoubleSpinBox();
+    px->setRange(-100, 100);
+    pointLayout->addWidget(px);
+    pointLayout->addWidget(new QLabel("Point y:"));
+    py = new QDoubleSpinBox();
+    py->setRange(-100, 100);
+    pointLayout->addWidget(py);
+    pointLayout->addWidget(new QLabel("Point z:"));
+    pz = new QDoubleSpinBox();
+    pz->setRange(-100, 100);
+    pointLayout->addWidget(pz);
+    layout->addLayout(pointLayout);
+
+    QHBoxLayout *btnLayout = new QHBoxLayout();
+    QPushButton *okBtn = new QPushButton("OK");
+    QPushButton *cancelBtn = new QPushButton("Cancel");
+    btnLayout->addWidget(okBtn);
+    btnLayout->addWidget(cancelBtn);
+    layout->addLayout(btnLayout);
+
+    connect(okBtn, &QPushButton::clicked, this, &ViewPositionDialog::accept);
+    connect(cancelBtn, &QPushButton::clicked, this, &ViewPositionDialog::reject);
+}
+
+QVector3D ViewPositionDialog::getEye() const {
+    return QVector3D(ex->value(), ey->value(), ez->value());
+}
+
+QVector3D ViewPositionDialog::getPoint() const {
+    return QVector3D(px->value(), py->value(), pz->value());
 }

@@ -1,10 +1,13 @@
-#ifndef LINEROTATIONDIALOG_H
-#define LINEROTATIONDIALOG_H
+#ifndef DIALOGS_H
+#define DIALOGS_H
 
 #include <QDialog>
 #include <QVector3D>
-
-class QDoubleSpinBox;
+#include <QDoubleSpinBox>
+#include <QLabel>
+#include <QPushButton>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 
 class LineRotationDialog : public QDialog {
     Q_OBJECT
@@ -16,15 +19,18 @@ public:
     QVector3D getB() const;
     QVector3D getD() const;
     float getAngle() const;
-
 private:
-    QDoubleSpinBox *bx;
-    QDoubleSpinBox *by;
-    QDoubleSpinBox *bz;
-    QDoubleSpinBox *dx;
-    QDoubleSpinBox *dy;
-    QDoubleSpinBox *dz;
-    QDoubleSpinBox *angleSpin;
+    QDoubleSpinBox *bx, *by, *bz, *dx, *dy, *dz, *angleSpin;
 };
 
-#endif // LINEROTATIONDIALOG_H
+class ViewPositionDialog : public QDialog {
+    Q_OBJECT
+public:
+    explicit ViewPositionDialog(QWidget *parent = nullptr);
+    QVector3D getEye() const;
+    QVector3D getPoint() const;
+private:
+    QDoubleSpinBox *ex, *ey, *ez, *px, *py, *pz;
+};
+
+#endif // DIALOGS_H
