@@ -6,9 +6,11 @@ TARGET = CubeRotationApp
 TEMPLATE = app
 
 SOURCES += \
+    linerotationdialog.cpp \
     main.cpp
 
-HEADERS +=
+HEADERS += \
+    linerotationdialog.h
 
 unix|windows: LIBS += -L$$PWD/w/ -lopengl32 -lglu32
 

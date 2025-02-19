@@ -27,60 +27,9 @@
 #include <QWheelEvent>
 #include <QIcon>
 
-//----------------------
-// Dialog for line rotation
-//----------------------
-class LineRotationDialog : public QDialog {
-    Q_OBJECT
-public:
-    // Ajout d'un constructeur avec valeurs par défaut
-    LineRotationDialog(QWidget *parent = nullptr,
-                       const QVector3D &defaultB = QVector3D(0,0,0),
-                       const QVector3D &defaultD = QVector3D(0,0,1),
-                       float defaultAngle = 0.0f) : QDialog(parent)
-    {
-        setWindowTitle("Line Rotation");
-        QVBoxLayout *layout = new QVBoxLayout(this);
+#include "linerotationdialog.h"
 
-        QHBoxLayout *bLayout = new QHBoxLayout();
-        bLayout->addWidget(new QLabel("b.x:"));
-        bx = new QDoubleSpinBox(); bx->setRange(-100, 100); bx->setValue(defaultB.x()); bLayout->addWidget(bx);
-        bLayout->addWidget(new QLabel("b.y:"));
-        by = new QDoubleSpinBox(); by->setRange(-100, 100); by->setValue(defaultB.y()); bLayout->addWidget(by);
-        bLayout->addWidget(new QLabel("b.z:"));
-        bz = new QDoubleSpinBox(); bz->setRange(-100, 100); bz->setValue(defaultB.z()); bLayout->addWidget(bz);
-        layout->addLayout(bLayout);
 
-        QHBoxLayout *dLayout = new QHBoxLayout();
-        dLayout->addWidget(new QLabel("d.x:"));
-        dx = new QDoubleSpinBox(); dx->setRange(-100, 100); dx->setValue(defaultD.x()); dLayout->addWidget(dx);
-        dLayout->addWidget(new QLabel("d.y:"));
-        dy = new QDoubleSpinBox(); dy->setRange(-100, 100); dy->setValue(defaultD.y()); dLayout->addWidget(dy);
-        dLayout->addWidget(new QLabel("d.z:"));
-        dz = new QDoubleSpinBox(); dz->setRange(-100, 100); dz->setValue(defaultD.z()); dLayout->addWidget(dz);
-        layout->addLayout(dLayout);
-
-        QHBoxLayout *angleLayout = new QHBoxLayout();
-        angleLayout->addWidget(new QLabel("Angle (deg):"));
-        angleSpin = new QDoubleSpinBox(); angleSpin->setRange(-360, 360); angleSpin->setValue(defaultAngle); angleLayout->addWidget(angleSpin);
-        layout->addLayout(angleLayout);
-
-        QHBoxLayout *btnLayout = new QHBoxLayout();
-        QPushButton *okBtn = new QPushButton("OK");
-        QPushButton *cancelBtn = new QPushButton("Cancel");
-        btnLayout->addWidget(okBtn);
-        btnLayout->addWidget(cancelBtn);
-        layout->addLayout(btnLayout);
-
-        connect(okBtn, &QPushButton::clicked, this, &LineRotationDialog::accept);
-        connect(cancelBtn, &QPushButton::clicked, this, &LineRotationDialog::reject);
-    }
-    QVector3D getB() const { return QVector3D(bx->value(), by->value(), bz->value()); }
-    QVector3D getD() const { return QVector3D(dx->value(), dy->value(), dz->value()); }
-    float getAngle() const { return angleSpin->value(); }
-private:
-    QDoubleSpinBox *bx, *by, *bz, *dx, *dy, *dz, *angleSpin;
-};
 
 //----------------------
 // Dialog for view position
