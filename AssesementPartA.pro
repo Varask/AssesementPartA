@@ -6,10 +6,12 @@ TARGET = CubeRotationApp
 TEMPLATE = app
 
 SOURCES += \
+    cubewidget.cpp \
     dialogs.cpp \
     main.cpp
 
 HEADERS += \
+    cubewidget.h \
     dialogs.h
 
 unix|windows: LIBS += -L$$PWD/w/ -lopengl32 -lglu32
