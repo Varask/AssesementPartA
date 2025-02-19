@@ -3,8 +3,32 @@
 
 #include <QApplication>
 #include <QMainWindow>
+#include <QOpenGLWidget>
+#include <QOpenGLFunctions>
+#include <QOpenGLShaderProgram>
+#include <QOpenGLBuffer>
+#include <QOpenGLVertexArrayObject>
+#include <QOpenGLTexture>
+#include <QMatrix4x4>
+#include <QTimer>
+#include <QDialog>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QDoubleSpinBox>
+#include <QPushButton>
+#include <QList>
+#include <QImage>
+#include <QVector3D>
+#include <QDebug>
 #include <QMenuBar>
 #include <QMenu>
+#include <QAction>
+#include <QMouseEvent>
+#include <QPainter>
+#include <QQuaternion>
+#include <QWheelEvent>
+#include <QIcon>
 
 //----------------------
 // MainWindow with menu and state machine

@@ -140,12 +140,13 @@ void CubeWidget::initializeGL()
 
     GLfloat vertices[] = {
         // Front face
-        -0.5f, -0.5f,  0.5f,   0, 0, 1,    0.0f, 0.0f,
-        0.5f, -0.5f,  0.5f,   0, 0, 1,    1.0f, 0.0f,
-        0.5f,  0.5f,  0.5f,   0, 0, 1,    1.0f, 1.0f,
-        0.5f,  0.5f,  0.5f,   0, 0, 1,    1.0f, 1.0f,
-        -0.5f,  0.5f,  0.5f,   0, 0, 1,    0.0f, 1.0f,
-        -0.5f, -0.5f,  0.5f,   0, 0, 1,    0.0f, 0.0f,
+        //      Position       Normal          Texcoords
+        -0.5f, -0.5f,  0.5f,    0, 0, 1,    0.0f, 0.0f,
+        0.5f, -0.5f,  0.5f,     0, 0, 1,    1.0f, 0.0f,
+        0.5f,  0.5f,  0.5f,     0, 0, 1,    1.0f, 1.0f,
+        0.5f,  0.5f,  0.5f,     0, 0, 1,    1.0f, 1.0f,
+        -0.5f,  0.5f,  0.5f,    0, 0, 1,    0.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,    0, 0, 1,    0.0f, 0.0f,
         // Back face
         -0.5f, -0.5f, -0.5f,   0, 0, -1,   1.0f, 0.0f,
         -0.5f,  0.5f, -0.5f,   0, 0, -1,   1.0f, 1.0f,
@@ -265,6 +266,7 @@ void CubeWidget::wheelEvent(QWheelEvent *event)
     int numDegrees = event->angleDelta().y() / 8;
     int numSteps = numDegrees / 15;
     cameraDistance -= numSteps * 0.5f;
+
     if (cameraDistance < 1.0f)
         cameraDistance = 1.0f;
     if (cameraDistance > 20.0f)
