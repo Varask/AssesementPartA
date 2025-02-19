@@ -1,6 +1,6 @@
 # Cube Rotation Visualization 🚀
 
-This project is a **Qt-based OpenGL application** that displays a 3D cube with an animated texture (🔥 magma) and provides several interactive features via a menu.
+This project is a **Qt-based OpenGL application** that displays a 3D cube with an animated texture (🔥 magma block from Minecraft) and provides several interactive features via a menu.
 
 ## Features 🎨
 
