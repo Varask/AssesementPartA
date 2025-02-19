@@ -6,17 +6,9 @@ TARGET = CubeRotationApp
 TEMPLATE = app
 
 SOURCES += \
-    glwidget.cpp \
-    linerotationdialog.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    viewpositiondialog.cpp
+    main.cpp
 
-HEADERS += \
-    glwidget.h \
-    linerotationdialog.h \
-    mainwindow.h \
-    viewpositiondialog.h
+HEADERS +=
 
 unix|windows: LIBS += -L$$PWD/w/ -lopengl32 -lglu32
 
@@ -29,4 +21,16 @@ DISTFILES += \
     Documentation.md \
     Documentation.md \
     README.md \
-    README.md
+    README.md \
+    textures/mine.png \
+    textures/mine.png \
+    textures/minecraft_logo_icon_168974.png \
+    textures/texture.png
+
+
+INCLUDEPATH += C:/Users/varask/Desktop/Cranfield/Vizualization/libs/glm
+
+RESOURCES += \
+    resources.qrc \
+    resources.qrc
+
