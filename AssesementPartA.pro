@@ -1,6 +1,6 @@
 QT += core gui widgets opengl openglwidgets
 
-CONFIG += c++17
+CONFIG += c++17 static release
 
 TARGET = CubeRotationApp
 TEMPLATE = app
