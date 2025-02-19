@@ -1,44 +1,29 @@
-# README
-- Project: `Visualisation Assessment Part A`
-- Date: `2025-02-14`
-- Author: `BENHAMOU Guillaume`
+# Cube Rotation Visualization (Part A)
 
-## Description
-This project is part of the MSc: Computational & Software Techniques in Engineering Visualisation Assignment 2024/25. The application, built using Qt and OpenGL, offers an interactive menu to manipulate a 3D cube. Key features include a line rotation tool (rotating the cube around a user-defined line using a point, a direction vector, and a rotation angle), camera view adjustment using `glm::lookAt`, a default view reset, and an animation option that spins the cube around its rotation axis.
+This project is a Qt-based OpenGL application that displays a 3D cube with an animated texture (magma) and provides several interactive features via a menu. The application fulfills the following requirements:
 
-## Pre-requisites
-- **Development Environment:**  
-  - Qt Creator (IDE)
-  - C++ compiler supporting C++11 or higher
-- **Libraries & Frameworks:**  
-  - Qt framework
-  - OpenGL
-  - GLM 
+- **Line Rotation**: Opens a dialog to input a line (point **b** and direction vector **d**) and a rotation angle. The cube rotates about the specified line.
+- **View Position**: Opens a dialog to set the camera's eye position and the point it is looking at. The cube is re-rendered from the new viewpoint.
+- **Default Position**: Resets the cube and camera to their default settings (camera at (0,0,3) looking toward the origin).
+- **Animation**: Toggles an automatic spin animation of the cube.
+- **Toggle Gloss**: Allows you to turn on/off a gloss effect on the bright areas of the texture.
+- **Zoom**: Use the mouse wheel to zoom in and out.
+- **Manual Rotation**: Drag the mouse to manually rotate the cube (which disables the automatic animation).
 
-## Install
+## Build and Run
 
-### 1. Clone the repository or download the ZIP file
+1. **Using Qt Creator:**
+   - Open the project file in Qt Creator.
+   - Depending the vesion of the project you might need GML replace the `INCLUDEPATH` in the .pro by your path.
+   - Make sure that your resource file (`.qrc`) includes the textures (e.g., `textures/texture.png` and `textures/mine.png`).
+   - Build and run the project.
 
-### 2. Open the project in Qt Creator
+2. **Command Line:**
+   - Configure and build using `qmake` and `make` (or the equivalent for your platform).
 
-### 3. Verify the Libraries & Frameworks
+## Resources
 
-(In the case you're not using the provided project as is, you may need to install the following libraries and frameworks manually.)
-
-In the project we are using the following libraries and frameworks that need to be installed on your system manually:
-
-- **GLM**  
-  - Download the latest version of GLM from the official repository: [GLM Download](https://github.com/g-truc/glm.git)
-
-### 4. Build the project
-
-To build the project, click on the hammer icon in the bottom left corner of the Qt Creator IDE. (Or by pressing `Ctrl + B`)
-
-### 5. Run the application
-
-Quickly run the application by clicking on the green play button in the bottom left corner of the Qt Creator IDE. (Or by pressing `Ctrl + R`)
-
-### 6. More about the project
-
-A more detailed documentation can be found in the [Documentation](./Documentation.md) Markdown file.It will provide more information about the project, the classes, and the methods used in the application.
+- Icon and texture files are managed via the Qt resource system.
+- The project uses QOpenGLWidget for rendering.
+- All menus and dialogs are built using Qt Widgets.
 
